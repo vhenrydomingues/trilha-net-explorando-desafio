@@ -2,10 +2,9 @@ namespace DesafioProjetoHospedagem.Models
 {
     public class Reserva
     {
-        public List<Pessoa> Hospedes { get; set; }
-        public Suite Suite { get; set; }
+        public List<DadosReserva> reserva { get; set;}
         public int DiasReservados { get; set; }
-
+        public int IdHospedes { get; set; }
         public Reserva() { }
 
         public Reserva(int diasReservados)
@@ -13,13 +12,45 @@ namespace DesafioProjetoHospedagem.Models
             DiasReservados = diasReservados;
         }
 
-        public void CadastrarHospedes(List<Pessoa> hospedes)
+        
+    }
+
+    public class DadosReserva
+    {
+        Suite su = new();
+        public int Id { get; set; }
+        public List<Reserva> ListaReserva { get; set; }
+        public void CadastrarReserva()
         {
+            Console.WriteLine("Por favor, Digite o id do Hospede que está fazendo a Reserva");
+            int idHospede = int.Parse(Console.ReadLine());
+            Console.WriteLine("Quantas pessoas irão se hospedar ?");
+            int qtdHospedes = int.Parse(Console.ReadLine());
+            su.ListarSuites();
+            Console.WriteLine("Digite o id da suite desejada");
+            int quarto = int.Parse(Console.ReadLine());
+
+            List<Suite> suite = su.RetornaSuites();
+
+            if(!suite.Any(x => x.Quarto == quarto && x.Capacidade <= qtdHospedes && x.Disponivel))
+            {
+                Console.WriteLine("A suite selecionada não pode ser utilizada!");
+                su.DadosDaSuite(quarto);
+                return;
+            }
+            
+            su.AtualizaSuite(quarto, false);
+            Console.WriteLine("Suite reservada com sucesso");
+
+            
+            
+
+
             // TODO: Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
             // *IMPLEMENTE AQUI*
             if (true)
             {
-                Hospedes = hospedes;
+               string aHospedes = string.Empty;
             }
             else
             {
@@ -27,19 +58,6 @@ namespace DesafioProjetoHospedagem.Models
                 // *IMPLEMENTE AQUI*
             }
         }
-
-        public void CadastrarSuite(Suite suite)
-        {
-            Suite = suite;
-        }
-
-        public int ObterQuantidadeHospedes()
-        {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
-            return 0;
-        }
-
         public decimal CalcularValorDiaria()
         {
             // TODO: Retorna o valor da diária
