@@ -8,6 +8,7 @@ string tipoSuite = string.Empty;
 // Cria os modelos de hóspedes e cadastra na lista de hóspedes
 Suite su = new();
 Hospedes ho = new();
+DadosReserva re = new();
 
 
 // Cria uma nova reserva, passando a suíte e os hóspedes
@@ -36,15 +37,16 @@ while (exibirMenu)
 	Console.WriteLine();
 	Console.WriteLine("Por favor, selecione uma das opções");
 	Console.WriteLine();
-	Console.WriteLine("1 - Cadastrar Suite");
-	Console.WriteLine("2 - Cadastrar Hospede");
-	Console.WriteLine("3 - Consultar Suites");
-	Console.WriteLine("4 - Consultar Hospedes");
-	Console.WriteLine("5 - Remover Suite");
-	Console.WriteLine("6 - Remover Hospede");
-	Console.WriteLine("7 - Associar Hospede a uma suite");
-	Console.WriteLine("8 - Remover Hospede de uma suite");	
-	Console.WriteLine("9 - Encerrar o sistema");
+	Console.WriteLine("1 - Cadastrar suite");
+	Console.WriteLine("2 - Cadastrar hospede");
+	Console.WriteLine("3 - Consultar suites");
+	Console.WriteLine("4 - Consultar hospedes");
+	Console.WriteLine("5 - Remover suite");
+	Console.WriteLine("6 - Remover hospede");
+	Console.WriteLine("7 - Cadastrar reserva");
+	Console.WriteLine("8 - Consultar reservas");	
+	Console.WriteLine("9 - Remover reserva");	
+	Console.WriteLine("10 - Encerrar o sistema");
 
 
 	switch (int.Parse(Console.ReadLine()))
@@ -84,18 +86,26 @@ while (exibirMenu)
 			Continuar();
 			break;
 		case 6:
-			//Reserva reserva = new Reserva(diasReservados: 5);
-			//reserva.CadastrarHospedes();
+			Console.WriteLine();
+			ho.RemoverHospede();
+			Continuar();
 			break;
-		case 7:
-			//Reserva reserva = new Reserva(diasReservados: 5);
-			//reserva.CadastrarHospedes();
+		case 7:		
+			Console.WriteLine();
+			re.CadastrarReserva(su, ho);
+			Continuar();
 			break;
 		case 8:
-			//Reserva reserva = new Reserva(diasReservados: 5);
-			//reserva.CadastrarHospedes();
+			Console.WriteLine();
+			re.ListarReservas(re.ListaReserva, ho.ListaHospede);
+			Continuar();
 			break;
 		case 9:
+			Console.WriteLine();
+			re.RemoverReserva(su);
+			Continuar();
+			break;
+		case 10:
 			exibirMenu = false;
 			Console.Clear();
 			break;

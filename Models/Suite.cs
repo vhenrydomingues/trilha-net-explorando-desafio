@@ -39,7 +39,8 @@ namespace DesafioProjetoHospedagem.Models
             suites.Add(new Suite { Quarto = quarto, TipoSuite = tipoSuite, Capacidade = capacidade, ValorDiaria = valorDiaria, Disponivel = true});
             Console.WriteLine("Suite Cadastrada com Sucesso");            
         }
-        public void ListarSuites()
+        public void 
+        ListarSuites()
         {
             if(!suites.Any())
             {
